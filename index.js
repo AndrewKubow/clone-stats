@@ -1,5 +1,13 @@
-module.exports = cloneStats;
+var Stat = require('fs').Stats
+
+module.exports = cloneStats
 
 function cloneStats(stats) {
-  return Object.assign(Object.create(Object.getPrototypeOf(stats)), stats);
+  var replacement = Object.create(Object.getPrototypeOf(stats))
+
+  Object.keys(stats).forEach(function(key) {
+    replacement[key] = stats[key]
+  })
+
+  return replacement
 }
